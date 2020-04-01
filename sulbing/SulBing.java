@@ -1,10 +1,12 @@
 package sulbing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,15 +21,15 @@ public class SulBing extends JFrame implements ActionListener{
 	BeverageAdmin beverage;
 	JTextArea tf, tf2;
 	JButton order, cancel, add;
-	
+	JButton bestMenu1, bestMenu2, bestMenu3, desertMenu1, desertMenu2, desertMenu3
+			, bingsuMenu1,bingsuMenu2,bingsuMenu3, beverageMenu1, beverageMenu2, beverageMenu3;
 	
 	
 
 	SulBing() {
-		best = new BestAdmin();
-		bingsu = new BingsuAdmin();
-		desert = new DesertAdmin();
-		beverage = new BeverageAdmin();
+		//객체 생성
+		//메뉴별로  그리드 생성
+		
 		
 		tf = new JTextArea(22,20);
 		tf2 = new JTextArea(22,20);
@@ -35,8 +37,39 @@ public class SulBing extends JFrame implements ActionListener{
 		add = new JButton("추가");
 		order = new JButton("주문");
 		cancel = new JButton("취소");
+		//베스트메뉴
+		bestMenu1 = new JButton(new ImageIcon("src/sulbing/img/4-1.PNG"));
+		bestMenu2 = new JButton(new ImageIcon("src/sulbing/img/4-2.PNG"));
+		bestMenu3 = new JButton(new ImageIcon("src/sulbing/img/4-3.PNG"));
+		bestMenu1.setBackground(Color.WHITE);
+		bestMenu2.setBackground(Color.WHITE);
+		bestMenu3.setBackground(Color.WHITE);
+		//디저트메뉴
+		desertMenu1 = new JButton(new ImageIcon("src/sulbing/img/2-1.PNG"));
+		desertMenu2 = new JButton(new ImageIcon("src/sulbing/img/2-2.PNG"));
+		desertMenu3 = new JButton(new ImageIcon("src/sulbing/img/2-3.PNG"));
+		desertMenu1.setBackground(Color.WHITE);
+		desertMenu2.setBackground(Color.WHITE);
+		desertMenu3.setBackground(Color.WHITE);
 		
+		bingsuMenu1 = new JButton(new ImageIcon("src/sulbing/img/1-1.PNG"));
+		bingsuMenu2 = new JButton(new ImageIcon("src/sulbing/img/1-2.PNG"));
+		bingsuMenu3 = new JButton(new ImageIcon("src/sulbing/img/1-3.PNG"));
+		bingsuMenu1.setBackground(Color.WHITE);
+		bingsuMenu2.setBackground(Color.WHITE);
+		bingsuMenu3.setBackground(Color.WHITE);
 		
+		beverageMenu1 = new JButton(new ImageIcon("src/sulbing/img/3-1.PNG"));
+		beverageMenu2 = new JButton(new ImageIcon("src/sulbing/img/3-2.PNG"));
+		beverageMenu3 = new JButton(new ImageIcon("src/sulbing/img/3-3.PNG"));
+		beverageMenu1.setBackground(Color.WHITE);
+		beverageMenu2.setBackground(Color.WHITE);
+		beverageMenu3.setBackground(Color.WHITE);
+		
+		best = new BestAdmin(bestMenu1,bestMenu2,bestMenu3);
+		bingsu = new BingsuAdmin(bingsuMenu1,bingsuMenu2,bingsuMenu3);
+		desert = new DesertAdmin(desertMenu1, desertMenu2, desertMenu3);
+		beverage = new BeverageAdmin(beverageMenu1, beverageMenu2, beverageMenu3);
 	}
 	
 	void display() {
@@ -116,17 +149,24 @@ public class SulBing extends JFrame implements ActionListener{
 		}else if (evt == order) {
 			int i = JOptionPane.showConfirmDialog(null, "주문하시겠습니까?");
 			if(i == 0) {
-				JOptionPane.showConfirmDialog(null, "주문 완료");
-	
-			}
-			
+				JOptionPane.showConfirmDialog(null, "주문 완료");	
+			}			
 		}
+		
+		
 		
 	}
 	public void eventProc() {
 		add.addActionListener(this);
 		cancel.addActionListener(this);
 		order.addActionListener(this);
+	
+		bestMenu1.addActionListener(this);
+		bestMenu2.addActionListener(this);
+		bestMenu3.addActionListener(this);
+		
+		
+		
 	}
 	
 	
@@ -136,6 +176,4 @@ public class SulBing extends JFrame implements ActionListener{
 		s.display();
 		s.eventProc();
 	}
-
-
 }
